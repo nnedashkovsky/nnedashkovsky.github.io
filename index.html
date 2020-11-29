@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>No_Ideas</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image" href="https://code.s3.yandex.net/web-code/js-favicon.ico">
+</head>
+<body>
+  <div class="header">
+    <p class="logo">Что мне делать?</p>
+    <div class="button">Ещё идея</div>
+  </div>
+
+  <img class="image" src="https://code.s3.yandex.net/web-code/procrastinate/9.png">
+
+  <div class="advice">
+    <span>Не рисовать шрифт, а</span>
+    <span class="phrase">что бы поделать?</span>
+    <img class="cursor" src="https://code.s3.yandex.net/web-code/cursor.gif">
+  </div>
+
+  <p class="footer">© 2020 Сделано за вечерок</p>
+
+  <script src="https://code.s3.yandex.net/web-code/smoothly.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+<style>
+@font-face {
+  src: url(https://code.s3.yandex.net/web-code/fonts/SuisseIntl-Book.woff);
+  font-family: 'Suisse';
+  font-weight: normal;
+}
+
+@font-face {
+  src: url(https://code.s3.yandex.net/web-code/fonts/SuisseIntl-Bold.woff
+);
+  font-family: 'Suisse';
+  font-weight: bold;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: #323131;
+  color: white;
+  position: relative;
+  max-width: 540px;
+  min-height: 100%;
+  margin: 0 auto;
+  font-family: 'Suisse';
+  box-sizing: border-box;
+  padding: 36px;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 24px;
+  margin: 0;
+}
+
+.button {
+  width: 130px;
+  height: 40px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  border: 1px solid white;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.button:hover {
+  opacity: 0.5;
+}
+
+.image {
+  width: 80%;
+  display: block;
+  margin: 60px auto 50px;
+}
+
+.advice {
+  font-size: 42px;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 70px;
+}
+
+.footer {
+  font-size: 16px;
+  margin: 0;
+  position: absolute;
+  bottom: 36px;
+}
+
+
+</style>
+<script>
+let phrases = [
+  { text: 'отправить другу смешную гифку', image: 'https://code.s3.yandex.net/web-code/procrastinate/1.gif' },
+  { text: 'посмотреть куда не улететь', image: 'https://code.s3.yandex.net/web-code/procrastinate/2.png' },
+  { text: 'разобраться, о чём поют рэперы', image: 'https://code.s3.yandex.net/web-code/procrastinate/3.png' },
+  { text: 'позалипать в ролики', image: 'https://code.s3.yandex.net/web-code/procrastinate/4.png' },
+  { text: 'расставить книги на полке по цвету', image: 'https://code.s3.yandex.net/web-code/procrastinate/5.png' },
+  { text: 'читать про зарплаты в Сан-Франциско', image: 'https://code.s3.yandex.net/web-code/procrastinate/6.png' },
+  { text: 'прочитать новости и ужаснуться в комментариях', image: 'https://code.s3.yandex.net/web-code/procrastinate/7.png' },
+  { text: 'попасть в поток грустных песен и вспомнить всё', image: 'https://code.s3.yandex.net/web-code/procrastinate/8.png' },
+  { text: 'посмотреть трейлер сериала и заодно первый сезон', image: 'https://code.s3.yandex.net/web-code/procrastinate/9.png' },
+  { text: 'проверить непрочитанное в Telegram-каналах', image: 'https://code.s3.yandex.net/web-code/procrastinate/10.png' }
+];
+
+function getRandomElement(arr) {
+  let randIndex = Math.floor(Math.random() * arr.length);
+  return arr[randIndex];
+}
+
+let button = document.querySelector('.button');
+let phrase = document.querySelector('.phrase');
+let advice = document.querySelector('.advice');
+let image = document.querySelector('.image');
+
+button.addEventListener('click', function () {
+  let randomElement = getRandomElement(phrases);
+  smoothly(phrase, 'textContent', randomElement.text)
+  smoothly(image, 'src', randomElement.image)
+
+  if (randomElement.text.length > 40) {
+    advice.style.fontSize = '33px';
+  } else {
+    advice.style.fontSize = '42px';
+  }
+});
+
+
+for (let i = 0; i <= 2; i = i + 1) {
+  // вывод элементов массива в консоль, используя i
+  smoothly(phrase, 'textContent', phrases[i].text);
+  smoothly(image, 'src', phrases[i].image)
+} 
+</script>
